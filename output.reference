@@ -1,0 +1,169 @@
+Test case 1: Creating an empty bank instance
+There are 0 accounts in the bank
+
+Test case 2: Creating a bank from a text file
+Error at line: Savings,14994198538,Solange Shinko,67.59,4.01
+Invalid account number ( 14994198538 ), must have 10 digits
+
+Error at line: Investment,185939624,Kris Marrier,101.41,Property
+Invalid account number ( 185939624 ), must have 10 digits
+
+Error at line: SomeType,1384294326,Maryann Royster,1082.0
+Invalid type of account: SomeType, should be [Checking|Savings|Investment]
+
+Error at line: Investment,7685678841,Mattie Poquette,540.5e,Growth
+Invalid format for the balance "540.5e", must be a double
+
+Error at line: Investment,8328775782,Fatima Saylors,163.09,High Risk
+Bad Investment type: "High Risk", should be [Property|Growth|Shares]
+
+Error at line: Savings,115623771.5,Allene Iturbide,200.7,10.51
+Invalid format for the account number "115623771.5", must be a long integer
+
+24 accounts read from the file "accounts.txt"
+Type            Number          Owner                           Balance         Interest/Type
+Savings         5446769365      Albina Glick                    $65.27          8.90 
+Investment      8879343291      Minna Amigon                    $15743.09       Growth    
+Checking        2783955784      Roxane Campain                  $9790.36   
+Investment      4175493256      Gladys Rim                      $73.40          Shares    
+Investment      9191317817      Charlie Brown                   $9025.00        Property  
+Checking        9469978369      Rozella Ostrosky                $84.05     
+Checking        4668155593      Sage Wieser                     $7637.21   
+Savings         6639764595      Lavera Perin                    $87.86          1.26 
+Savings         8299447162      Erick Ferencz                   $3834.62        0.75 
+Investment      9388266326      Kati Rulapaugh                  $98.61          Shares    
+Checking        4342568492      Simona Morasca                  $1567.90   
+Savings         4373387895      Abel Maclead                    $102.96         11.84
+Investment      7987268119      Graciela Ruta                   $659.99         Growth    
+Investment      2524622716      Ezekiel Chui                    $153.28         Shares    
+Savings         2636761959      Youlanda Schemmer               $630.55         10.56
+Investment      9567454228      Dyan Oldroyd                    $155.42         Shares    
+Investment      3466958384      Lenna Paprocki                  $493.45         Growth    
+Checking        9112997843      Veronika Inouye                 $198.21    
+Savings         4332584363      Josephine Darakjy               $401.31         9.83 
+Checking        2618642488      Kanisha Waycott                 $198.51    
+Savings         9525996133      Fletcher Flosi                  $356.30         6.20 
+Checking        2988811818      Leota Dilliard                  $281.96    
+Investment      6163767899      Bernardo Figeroa                $246.97         Property  
+Savings         8666618232      Francine Vocelka                $268.44         9.76 
+
+Test case 3: finding an account (success)
+Account found: Investment       6163767899      Bernardo Figeroa                $246.97         Property  
+
+Test case 4: withdraw from account (success)
+Withdrawal completed successfully
+New balance: $146.97
+
+Test case 5: withdraw from account (fail)
+Withdrawal failed. Not enough credit in the account.
+
+Test case 6: deposit money in an account
+Deposit completed successfully
+New balance: $2146.97
+
+Test case 7: Apply the monthly interest on a savings account
+Account found: Savings          2636761959      Youlanda Schemmer               $630.55         10.56
+The amount $5.55 added to the account
+New balance: $636.10
+
+Test case 8: get the profit on an investment account
+Account found: Investment       4175493256      Gladys Rim                      $73.40          Shares    
+Profit: the amount $3.67 was added to the account
+New balance: $77.07
+
+Test case 9: get the loss on an investment account
+Loss: the amount $1.54 was deducted from the account
+New balance: $75.53
+
+Test case 10: finding an account (fail)
+Account number 999999999 not found.
+
+Test case 11: removing an account (success)
+Account found and removed: Investment   9191317817      Charlie Brown                   $9025.00        Property  
+
+Test case 12: removing an account (fail)
+Account number 999999999 not found.
+
+Test case 13: viewing the list of accounts
+There are 23 accounts in the bank
+Type            Number          Owner                           Balance         Interest/Type
+Savings         5446769365      Albina Glick                    $65.27          8.90 
+Investment      8879343291      Minna Amigon                    $15743.09       Growth    
+Checking        2783955784      Roxane Campain                  $9790.36   
+Investment      4175493256      Gladys Rim                      $75.53          Shares    
+Checking        9469978369      Rozella Ostrosky                $84.05     
+Checking        4668155593      Sage Wieser                     $7637.21   
+Savings         6639764595      Lavera Perin                    $87.86          1.26 
+Savings         8299447162      Erick Ferencz                   $3834.62        0.75 
+Investment      9388266326      Kati Rulapaugh                  $98.61          Shares    
+Checking        4342568492      Simona Morasca                  $1567.90   
+Savings         4373387895      Abel Maclead                    $102.96         11.84
+Investment      7987268119      Graciela Ruta                   $659.99         Growth    
+Investment      2524622716      Ezekiel Chui                    $153.28         Shares    
+Savings         2636761959      Youlanda Schemmer               $636.10         10.56
+Investment      9567454228      Dyan Oldroyd                    $155.42         Shares    
+Investment      3466958384      Lenna Paprocki                  $493.45         Growth    
+Checking        9112997843      Veronika Inouye                 $198.21    
+Savings         4332584363      Josephine Darakjy               $401.31         9.83 
+Checking        2618642488      Kanisha Waycott                 $198.51    
+Savings         9525996133      Fletcher Flosi                  $356.30         6.20 
+Checking        2988811818      Leota Dilliard                  $281.96    
+Investment      6163767899      Bernardo Figeroa                $2146.97        Property  
+Savings         8666618232      Francine Vocelka                $268.44         9.76 
+
+Test case 14: sorting the bank accounts by balance
+Type            Number          Owner                           Balance         Interest/Type
+Savings         5446769365      Albina Glick                    $65.27          8.90 
+Investment      4175493256      Gladys Rim                      $75.53          Shares    
+Checking        9469978369      Rozella Ostrosky                $84.05     
+Savings         6639764595      Lavera Perin                    $87.86          1.26 
+Investment      9388266326      Kati Rulapaugh                  $98.61          Shares    
+Savings         4373387895      Abel Maclead                    $102.96         11.84
+Investment      2524622716      Ezekiel Chui                    $153.28         Shares    
+Investment      9567454228      Dyan Oldroyd                    $155.42         Shares    
+Checking        9112997843      Veronika Inouye                 $198.21    
+Checking        2618642488      Kanisha Waycott                 $198.51    
+Savings         8666618232      Francine Vocelka                $268.44         9.76 
+Checking        2988811818      Leota Dilliard                  $281.96    
+Savings         9525996133      Fletcher Flosi                  $356.30         6.20 
+Savings         4332584363      Josephine Darakjy               $401.31         9.83 
+Investment      3466958384      Lenna Paprocki                  $493.45         Growth    
+Savings         2636761959      Youlanda Schemmer               $636.10         10.56
+Investment      7987268119      Graciela Ruta                   $659.99         Growth    
+Checking        4342568492      Simona Morasca                  $1567.90   
+Investment      6163767899      Bernardo Figeroa                $2146.97        Property  
+Savings         8299447162      Erick Ferencz                   $3834.62        0.75 
+Checking        4668155593      Sage Wieser                     $7637.21   
+Checking        2783955784      Roxane Campain                  $9790.36   
+Investment      8879343291      Minna Amigon                    $15743.09       Growth    
+
+
+Test case 15: Saving the list of accounts to the file "accounts.txt"
+23 accounts saved to the file "accounts.txt"
+
+Test case 16: Reading the accounts from the updated file "accounts.txt"
+23 accounts read from the file "accounts.txt"
+Type            Number          Owner                           Balance         Interest/Type
+Savings         5446769365      Albina Glick                    $65.27          8.90 
+Investment      4175493256      Gladys Rim                      $75.53          Shares    
+Checking        9469978369      Rozella Ostrosky                $84.05     
+Savings         6639764595      Lavera Perin                    $87.86          1.26 
+Investment      9388266326      Kati Rulapaugh                  $98.61          Shares    
+Savings         4373387895      Abel Maclead                    $102.96         11.84
+Investment      2524622716      Ezekiel Chui                    $153.28         Shares    
+Investment      9567454228      Dyan Oldroyd                    $155.42         Shares    
+Checking        9112997843      Veronika Inouye                 $198.21    
+Checking        2618642488      Kanisha Waycott                 $198.51    
+Savings         8666618232      Francine Vocelka                $268.44         9.76 
+Checking        2988811818      Leota Dilliard                  $281.96    
+Savings         9525996133      Fletcher Flosi                  $356.30         6.20 
+Savings         4332584363      Josephine Darakjy               $401.31         9.83 
+Investment      3466958384      Lenna Paprocki                  $493.45         Growth    
+Savings         2636761959      Youlanda Schemmer               $636.10         10.56
+Investment      7987268119      Graciela Ruta                   $659.99         Growth    
+Checking        4342568492      Simona Morasca                  $1567.90   
+Investment      6163767899      Bernardo Figeroa                $2146.97        Property  
+Savings         8299447162      Erick Ferencz                   $3834.62        0.75 
+Checking        4668155593      Sage Wieser                     $7637.21   
+Checking        2783955784      Roxane Campain                  $9790.36   
+Investment      8879343291      Minna Amigon                    $15743.09       Growth
