@@ -122,18 +122,27 @@ public class Bank{
                     double balance = Double.parseDouble(categories[3]);
                     switch (acctype) {
                         case "Checking":
+                            if (categories.length != 4) {
+                                throw new BadFormatException("Invalid Checking format");
+                            }
                             Checking checking = new Checking(number, owner, balance);
-                            accounts.add(checking);
+                            add(checking);
                             break;
                         case "Savings":
+                            if (categories.length != 5) {
+                                throw new BadFormatException("Invalid Savings format");
+                            }
                             double yInterestRate = Double.parseDouble(categories[4]);
                             Savings savings = new Savings(number, owner, balance, yInterestRate);
-                            accounts.add(savings);
+                            add(savings);
                             break;
                         case "Investment":
+                            if (categories.length != 5) {
+                                throw new BadFormatException("Invalid Investment format");
+                            }
                             String type = categories[4];
                             Investment investment = new Investment(number, owner, balance, type);
-                            accounts.add(investment);
+                            add(investment);
                             break;
                         default:
                             throw new BadFormatException("Invalid account type");
