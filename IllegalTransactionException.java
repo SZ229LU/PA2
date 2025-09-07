@@ -1,6 +1,6 @@
 public class IllegalTransactionException extends Exception {
     public IllegalTransactionException() {
-        super("Illegal Transaction.");
+        System.out.println("Illegal Transaction Exception.");
     }
     public IllegalTransactionException(String message) {
         super(message);

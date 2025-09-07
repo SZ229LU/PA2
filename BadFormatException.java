@@ -1,7 +1,7 @@
 import java.util.InputMismatchException;
 public class BadFormatException extends InputMismatchException {
     public BadFormatException() {
-        super("Bad Format.");
+        System.out.println("Bad Format Exception.");
     }
     public BadFormatException(String message) {
         super(message);

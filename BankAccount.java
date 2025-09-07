@@ -33,7 +33,7 @@ public abstract class BankAccount {
     */
     public BankAccount(long number, String owner, double balance) throws BadFormatException {
         if(!String.valueOf(number).matches("\\d{10}")) {
-            throw new BadFormatException("Invalid account number.");
+            throw new BadFormatException("Invalid format for the account number " + number + ", must be a long integer");
         }
         this.owner = owner;
         this.balance = balance;
@@ -92,7 +92,7 @@ public abstract class BankAccount {
      */
     public boolean withdraw(double amount) throws IllegalTransactionException {
         if(amount >= balance) {
-            throw new IllegalTransactionException();
+            throw new IllegalTransactionException("Withdrawal failed. Not enough credit in the account.");
         }
         balance -= amount;
         return true;

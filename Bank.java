@@ -116,19 +116,19 @@ public class Bank{
                 String line = scanner.nextLine();
                 try {
                     String[] categories = line.split(",");
-                    String acctype = categories[0];
+                    char acctype = categories[0].charAt(0);
                     long number = Long.parseLong(categories[1]);
                     String owner = categories[2];
                     double balance = Double.parseDouble(categories[3]);
                     switch (acctype) {
-                        case "Checking":
+                        case 'C':
                             if (categories.length != 4) {
                                 throw new BadFormatException("Invalid Checking format");
                             }
                             Checking checking = new Checking(number, owner, balance);
                             add(checking);
                             break;
-                        case "Savings":
+                        case 'S':
                             if (categories.length != 5) {
                                 throw new BadFormatException("Invalid Savings format");
                             }
@@ -136,7 +136,7 @@ public class Bank{
                             Savings savings = new Savings(number, owner, balance, yInterestRate);
                             add(savings);
                             break;
-                        case "Investment":
+                        case 'I':
                             if (categories.length != 5) {
                                 throw new BadFormatException("Invalid Investment format");
                             }
@@ -159,5 +159,16 @@ public class Bank{
         }
     }
 
+    public void save(String filename) {
+        try {
+            PrintWriter writer = new PrintWriter(filename);
+            for (int i = 0; i < count; i++) {
+                writer.println(accounts[i].fileString());
+            }
+            writer.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Error writing to file: " + filename);
+        }
+    }
     
 }
