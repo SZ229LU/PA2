@@ -40,6 +40,6 @@ public class Checking extends BankAccount{
      * @return a string representation of the bank account suitable CSV format for file storage
      */
     public String fileString(){
-        return String.format("C,%d,%s,%f",getNumber(), getOwner(), getBalance());
+        return String.format("%s,%d,%s,%f","Checking",getNumber(), getOwner(), getBalance());
     }
 }

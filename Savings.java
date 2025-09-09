@@ -72,7 +72,7 @@ public class Savings extends BankAccount {
      * @return a string representation of the bank account suitable CSV format for file storage
      */
     public String fileString(){
-        return String.format("S,%d,%s,%f,%f",getNumber(), getOwner(), getBalance(), YearlyInterestRate);
+        return String.format("%s,%d,%s,%f,%f","Savings",getNumber(), getOwner(), getBalance(), YearlyInterestRate);
     }
 
 }

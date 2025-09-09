@@ -32,7 +32,7 @@ public class Investment extends BankAccount{
     public Investment(long number, String owner, double balance, String type) throws BadFormatException {
         super(number, owner, balance);
         if(type == null || !(type.equals("Property") || type.equals("Growth") || type.equals("Shares"))) {
-            throw new BadFormatException("Invalid investment type.");
+            throw new BadFormatException("Bad Investment type: \"" + type + "\", should be [Property|Growth|Shares]");
         }
         this.type = type;
     }
@@ -52,7 +52,7 @@ public class Investment extends BankAccount{
      */
     public void setType(String type) throws BadFormatException {
         if(type == null || !(type.equals("Property") || type.equals("Growth") || type.equals("Shares"))) {
-            throw new BadFormatException("Invalid investment type.");
+            throw new BadFormatException("Bad Investment type: " + type + ", should be [Property|Growth|Shares]");
         }
         this.type = type;
     }
@@ -91,6 +91,6 @@ public class Investment extends BankAccount{
      * @return a string representation of the bank account suitable CSV format for file storage
      */
     public String fileString(){
-        return String.format("I,%d,%s,%f,%s",getNumber(), getOwner(), getBalance(), type);
+        return String.format("%s,%d,%s,%f,%s","Investment",getNumber(), getOwner(), getBalance(), type);
     }
 }

@@ -3,6 +3,11 @@ import java.io.FileNotFoundException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.io.PrintWriter;
+/**
+ * Class Bank to model the entity Bank that contains an array of BankAccount    
+ * @author: Steven Zhang
+ * @version: Java 11
+ */
 public class Bank{
     private BankAccount[] accounts;
     private int count;
@@ -108,27 +113,32 @@ public class Bank{
         return Banklogs;
     }
 
+    /**
+     * Method to read bank account information from a file and populate the accounts array with data from the file.
+     * @param filename the name of the file to read from
+     */
     private void read(String filename) {
         File file = new File(filename);
+        String[] categories = null;
         try {
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()){
                 String line = scanner.nextLine();
                 try {
-                    String[] categories = line.split(",");
+                    categories = line.split(",");
                     char acctype = categories[0].charAt(0);
                     long number = Long.parseLong(categories[1]);
                     String owner = categories[2];
                     double balance = Double.parseDouble(categories[3]);
-                    switch (acctype) {
-                        case 'C':
+                    switch (categories[0]) {
+                        case "Checking":
                             if (categories.length != 4) {
                                 throw new BadFormatException("Invalid Checking format");
                             }
                             Checking checking = new Checking(number, owner, balance);
                             add(checking);
                             break;
-                        case 'S':
+                        case "Savings":
                             if (categories.length != 5) {
                                 throw new BadFormatException("Invalid Savings format");
                             }
@@ -136,7 +146,7 @@ public class Bank{
                             Savings savings = new Savings(number, owner, balance, yInterestRate);
                             add(savings);
                             break;
-                        case 'I':
+                        case "Investment":
                             if (categories.length != 5) {
                                 throw new BadFormatException("Invalid Investment format");
                             }
@@ -145,11 +155,21 @@ public class Bank{
                             add(investment);
                             break;
                         default:
-                            throw new BadFormatException("Invalid account type");
+                            throw new BadFormatException("Invalid type of account: " + categories[0] + ", should be [Checking|Savings|Investment]");
                     }
                 }
-                catch (Exception e){
-                    System.out.println("Error reading line: " + line);
+                catch (BadFormatException e){
+                    System.out.println("Error at line: " + line);
+                    System.out.println(e.getMessage());
+                }
+                catch (NumberFormatException e){
+                    System.out.println("Error at line: " + line);
+                    String s = e.getMessage();
+                    if (s.contains(categories[1])) {
+                        System.out.println("Invalid format for the account number \"" + categories[1] + "\", must be a long integer");
+                    } else if (s.contains(categories[3])) {
+                        System.out.println("Invalid format for the balance \"" + categories[3] + "\", must be a double");
+                    }
                 }
             }
             scanner.close();
@@ -159,6 +179,10 @@ public class Bank{
         }
     }
 
+    /**
+     * Method to save bank account information to a file.
+     * @param filename the name of the file to save to
+     */
     public void save(String filename) {
         try {
             PrintWriter writer = new PrintWriter(filename);
